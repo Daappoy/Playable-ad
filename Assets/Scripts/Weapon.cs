@@ -13,7 +13,7 @@ public class Weapon : MonoBehaviour
 
     void Update()
     {
-        //set this to automatic fire
+        //test tambahan
         if (Time.time >= _nextFireTime)
         {
             FireProjectile();
@@ -40,7 +40,6 @@ public class Weapon : MonoBehaviour
         }
         else
         {
-            // Fire two projectiles at slight angles when upgraded
             int facing = (player != null) ? player._facing : 1;
 
             GameObject projectile1 = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
@@ -49,7 +48,7 @@ public class Weapon : MonoBehaviour
             projTransform1.localRotation = Quaternion.Euler(0f, 0f, -90f);
             if (rb1 != null)
             {
-                float angleOffset = 5f; // degrees
+                float angleOffset = 5f; 
                 float rad = Mathf.Deg2Rad * angleOffset;
                 Vector2 direction1 = new Vector2(Mathf.Cos(rad) * facing, Mathf.Sin(rad));
                 rb1.velocity = direction1.normalized * projectileSpeed;
@@ -62,7 +61,7 @@ public class Weapon : MonoBehaviour
             projTransform2.localRotation = Quaternion.Euler(0f, 0f, -90f);
             if (rb2 != null)
             {
-                float angleOffset = -5f; // degrees
+                float angleOffset = -5f;
                 float rad = Mathf.Deg2Rad * angleOffset;
                 Vector2 direction2 = new Vector2(Mathf.Cos(rad) * facing, Mathf.Sin(rad));
                 rb2.velocity = direction2.normalized * projectileSpeed;
