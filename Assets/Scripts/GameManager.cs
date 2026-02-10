@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public bool UpgradeIsOnWorld = false;
     private Player player;
     public GameObject losePanel;
+    public GameObject MovementButtons; 
     void Start()
     {
         if (Instance == null)
@@ -53,6 +54,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Player has died. Game Over!");
         losePanel.SetActive(true);
+        MovementButtons.SetActive(false);
         // Implement game over logic here (e.g., show game over screen, restart level, etc.)
     }
 }

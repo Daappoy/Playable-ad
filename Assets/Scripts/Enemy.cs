@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     public float speed;
     public float jumpForce;
     public GameObject upgradePrefab;
+    public Animator animator;
     
     [Tooltip("score value")]
     public int scoreValue = 10;
@@ -36,6 +37,7 @@ public class Enemy : MonoBehaviour
     {
         // Debug.Log("taking damage! " + amount);
         health -= amount;
+        animator.SetTrigger("Hurt");
         if (health <= 0)
         {
             Die();

@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 78203265}
   - component: {fileID: 78203270}
   - component: {fileID: 78203269}
+  - component: {fileID: 78203272}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -306,6 +307,8 @@ MonoBehaviour:
   _rb2d: {fileID: 78203270}
   _collider2d: {fileID: 78203269}
   upgraded: 0
+  moveInput: 0
+  playerAnimator: {fileID: 78203272}
   health: 0
   speed: 0
   jumpForce: 0
@@ -316,6 +319,27 @@ MonoBehaviour:
   groundCheckDistance: 0.1
   inputThreshold: 0.1
   _facing: 1
+--- !u!95 &78203272
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78203264}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7149e2890657f984396fb7ebd6143e53, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &84039453
 GameObject:
   m_ObjectHideFlags: 0
@@ -927,6 +951,7 @@ GameObject:
   - component: {fileID: 961683526}
   - component: {fileID: 961683525}
   - component: {fileID: 961683524}
+  - component: {fileID: 961683527}
   m_Layer: 5
   m_Name: Jump
   m_TagString: Untagged
@@ -996,19 +1021,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 961683525}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 78203271}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: JumpButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &961683525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1047,6 +1060,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961683522}
   m_CullTransparentMesh: 1
+--- !u!114 &961683527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 961683522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7211ef92eadf74f468edbf3ab38434dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: 1
+  isJumpButton: 1
+  player: {fileID: 0}
 --- !u!1 &969206546
 GameObject:
   m_ObjectHideFlags: 0
@@ -1260,6 +1288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 1
+  isJumpButton: 0
   player: {fileID: 0}
 --- !u!1 &1442500220
 GameObject:
@@ -1787,6 +1816,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: -1
+  isJumpButton: 0
   player: {fileID: 0}
 --- !u!1 &2090677808
 GameObject:
@@ -1821,6 +1851,7 @@ MonoBehaviour:
   scoreText: {fileID: 969206548}
   UpgradeIsOnWorld: 0
   losePanel: {fileID: 112574836}
+  MovementButtons: {fileID: 84039453}
 --- !u!4 &2090677810
 Transform:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2371061696208427058}
   - component: {fileID: 7564559196705497587}
   - component: {fileID: 2833086778696053242}
+  - component: {fileID: 5192363315506335346}
   - component: {fileID: 863388342133748650}
   - component: {fileID: 4777317782309609444}
   m_Layer: 7
@@ -120,10 +121,32 @@ MonoBehaviour:
   speed: 0
   jumpForce: 0
   upgradePrefab: {fileID: 5154661431194612871, guid: 23914520f43e8e04086ff335b71cac74, type: 3}
+  animator: {fileID: 5192363315506335346}
   scoreValue: 10
   onDeath:
     m_PersistentCalls:
       m_Calls: []
+--- !u!95 &5192363315506335346
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064563410741207387}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 72d7bfd85d9c8ce498ba778f2bfadba1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!50 &863388342133748650
 Rigidbody2D:
   serializedVersion: 4

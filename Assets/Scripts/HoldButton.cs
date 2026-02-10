@@ -5,9 +5,11 @@ public class HoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
 {
     [Tooltip("Set -1 for left, 1 for right")]
     public int direction = 1;
+    public bool isJumpButton = false;
     public Player player;
 
     private bool isPressed = false;
+    
 
     void Awake()
     {
@@ -18,7 +20,8 @@ public class HoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
 
     void Update()
     {
-        if (!isPressed) return;
+        // Only movement buttons need hold/update checks
+        if (isJumpButton || !isPressed) return;
 
         // Global release safety
         if (Input.GetMouseButtonUp(0))
@@ -40,12 +43,35 @@ public class HoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        // Jump: fire once, no hold state
+        if (isJumpButton)
+        {
+            if (player != null)
+            {
+                player.Jump();
+            }
+            return;
+        }
+
+        // Movement: start hold and set direction
         isPressed = true;
-        if (player != null) player.SetMove(direction);
+        if (player != null)
+        {
+            player.SetMove(direction);
+        }
     }
 
-    public void OnPointerUp(PointerEventData eventData) { StopPress(); }
-    public void OnPointerExit(PointerEventData eventData) { StopPress(); }
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        // Only stop movement buttons
+        if (!isJumpButton) StopPress();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        // Only stop movement buttons
+        if (!isJumpButton) StopPress();
+    }
 
     private void StopPress()
     {

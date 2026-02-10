@@ -11,8 +11,9 @@ public class Player : MonoBehaviour
     [SerializeField] private Rigidbody2D _rb2d;
     [SerializeField] private Collider2D _collider2d;
     public bool upgraded = false;
-    private int moveInput = 0;
+    [SerializeField] private int moveInput = 0;
     public DeadEvent onPlayerDead = new DeadEvent();
+    public Animator playerAnimator;
 
     [Header("Movement Settings")]
     public int health;
@@ -49,6 +50,7 @@ public class Player : MonoBehaviour
 
         float x = moveInput != 0 ? moveInput * speed : 0f;
         _rb2d.velocity = new Vector2(x, _rb2d.velocity.y);
+        playerAnimator.SetInteger("MoveInput", moveInput);
 
         if (moveInput != 0 && moveInput != _facing)
         {
@@ -67,7 +69,7 @@ public class Player : MonoBehaviour
         isGrounded = hit.collider != null;
     }
 
-    public void JumpButton()
+    public void Jump()
     {
         if (isGrounded)
         {
