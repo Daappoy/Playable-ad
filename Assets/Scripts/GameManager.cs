@@ -21,11 +21,7 @@ public class GameManager : MonoBehaviour
         }
         UpdateScoreText();
         
-        // subscribe to existing enemies
-         foreach (var e in FindObjectsOfType<Enemy>())
-         {
-             e.onDeath.AddListener(AddScore);
-         }
+        
          //subscribe to player whenever it is dead
          player = FindObjectOfType<Player>();
          if (player != null)
@@ -36,7 +32,10 @@ public class GameManager : MonoBehaviour
     
     public void RegisterEnemy(Enemy enemy)
     {
-        if (enemy != null) enemy.onDeath.AddListener(AddScore);
+        if (enemy == null) return;
+        // Prevent duplicate subscriptions by removing first, then adding once
+        enemy.onDeath.RemoveListener(AddScore);
+        enemy.onDeath.AddListener(AddScore);
     }
 
     public void AddScore(int amount)

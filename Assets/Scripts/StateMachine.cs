@@ -11,16 +11,21 @@ public class StateMachine : MonoBehaviour
     }
     [Header("State Machine")]
     public State currentState = State.Idle;
-    
+    public Enemy enemyData;
     [Header("Components")]
     public Transform player;
-    //once spawned, enemy will chase player
 
     void Start()
     {
-        currentState = State.Chasing;
-        //find player in scene
         FindPlayer();
+    }
+
+    private void OnEnable()
+    {
+        if (player == null)
+        {
+            FindPlayer();
+        }
     }
     
     private void FindPlayer()
@@ -31,15 +36,24 @@ public class StateMachine : MonoBehaviour
             if (playerObj != null)
             {
                 player = playerObj.transform;
+                currentState = State.Chasing;
             }
         }
     }
-    void LateUpdate()
+    void Update()
     {
+        if (player == null)
+        {
+            FindPlayer();
+        }
+        
         switch (currentState)
         {
             case State.Idle:
-                // Do nothing
+                if (player != null)
+                {
+                    currentState = State.Chasing;
+                }
                 break;
             case State.Chasing:
                 ChasePlayer();
@@ -51,7 +65,6 @@ public class StateMachine : MonoBehaviour
     {
         if (player == null) return;
         // Move towards the player
-        float step = 2f * Time.deltaTime; // Adjust speed as needed
-        transform.position = Vector3.MoveTowards(transform.position, player.position, step);
+        transform.position = Vector3.MoveTowards(transform.position, player.position, enemyData.speed * Time.deltaTime);
     }
 }
