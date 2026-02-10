@@ -74,6 +74,7 @@ public class Player : MonoBehaviour
         if (isGrounded)
         {
             _rb2d.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+            AudioManager.Instance.PlaySound(AudioManager.Instance.jumpSound);
         }
     }
 
@@ -92,6 +93,7 @@ public class Player : MonoBehaviour
     {
         upgraded = true;
         Debug.Log("Player weapon upgraded!");
+        AudioManager.Instance.PlaySound(AudioManager.Instance.powerUpSound);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

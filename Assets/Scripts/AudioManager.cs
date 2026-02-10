@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    
+    //audioSource
+    public AudioSource audioSource;
+    //audio clips
+    public AudioClip jumpSound;
+    public AudioClip shootSound;
+    public AudioClip hurtSound;
+    public AudioClip powerUpSound;
+    public AudioClip coinSound;
+
     public static AudioManager Instance;
     void Awake()
     {
@@ -19,5 +27,8 @@ public class AudioManager : MonoBehaviour
         }
     }
     
-    
+    public void PlaySound(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
+    }
 }

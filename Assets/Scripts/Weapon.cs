@@ -24,7 +24,7 @@ public class Weapon : MonoBehaviour
     private void FireProjectile()
     {
         if (projectilePrefab == null || firePoint == null) return;
-
+        AudioManager.Instance.PlaySound(AudioManager.Instance.shootSound);
         if (player.upgraded == false)
         {
             GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);

@@ -38,6 +38,7 @@ public class Enemy : MonoBehaviour
         // Debug.Log("taking damage! " + amount);
         health -= amount;
         animator.SetTrigger("Hurt");
+        AudioManager.Instance.PlaySound(AudioManager.Instance.hurtSound);
         if (health <= 0)
         {
             Die();
@@ -53,6 +54,7 @@ public class Enemy : MonoBehaviour
         if (dropChance <= 0.5f && !GameManager.Instance.UpgradeIsOnWorld)
         {
             Debug.Log("Dropping weapon upgrade");
+            AudioManager.Instance.PlaySound(AudioManager.Instance.coinSound);
             // Instantiate weapon upgrade prefab at enemy position
             if (upgradePrefab != null)
             {
