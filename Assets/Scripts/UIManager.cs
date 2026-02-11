@@ -10,25 +10,29 @@ public class UIManager : MonoBehaviour
     {
         AdjustButtonPositions();
     }
-    bool isPortrait()
+
+    void OnRectTransformDimensionsChange()
+    {
+        AdjustButtonPositions();
+    }
+
+    bool IsPortrait()
     {
         return Screen.height >= Screen.width;
     }
 
-    private void AdjustButtonPositions()
+    void AdjustButtonPositions()
     {
-        if (isPortrait() == true)
+        if (IsPortrait())
         {
-            //portrait
             Debug.Log("Portrait Mode");
             movementButtons.transform.localPosition = new Vector3(0, -330, 0);
             scoreText.transform.localPosition = new Vector3(0, 620, 0);
         }
-        else if (isPortrait() == false)
+        else
         {
-            //landscape
             Debug.Log("Landscape Mode");
-            movementButtons.transform.localPosition = new Vector3(-555, -25, 0);
+            movementButtons.transform.localPosition = new Vector3(-450, -25, 0);
             scoreText.transform.localPosition = new Vector3(0, 400, 0);
         }
     }

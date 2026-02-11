@@ -33,7 +33,6 @@ public class GameManager : MonoBehaviour
     public void RegisterEnemy(Enemy enemy)
     {
         if (enemy == null) return;
-        // Prevent duplicate subscriptions by removing first, then adding once
         enemy.onDeath.RemoveListener(AddScore);
         enemy.onDeath.AddListener(AddScore);
     }
@@ -54,6 +53,10 @@ public class GameManager : MonoBehaviour
         Debug.Log("Player has died. Game Over!");
         losePanel.SetActive(true);
         MovementButtons.SetActive(false);
-        // Implement game over logic here (e.g., show game over screen, restart level, etc.)
+    }
+    
+    public void RestartGame()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 }

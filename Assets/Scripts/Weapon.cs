@@ -48,7 +48,7 @@ public class Weapon : MonoBehaviour
             projTransform1.localRotation = Quaternion.Euler(0f, 0f, -90f);
             if (rb1 != null)
             {
-                float angleOffset = 5f; 
+                float angleOffset = 1f; 
                 float rad = Mathf.Deg2Rad * angleOffset;
                 Vector2 direction1 = new Vector2(Mathf.Cos(rad) * facing, Mathf.Sin(rad));
                 rb1.velocity = direction1.normalized * projectileSpeed;
@@ -61,7 +61,7 @@ public class Weapon : MonoBehaviour
             projTransform2.localRotation = Quaternion.Euler(0f, 0f, -90f);
             if (rb2 != null)
             {
-                float angleOffset = -5f;
+                float angleOffset = -1f;
                 float rad = Mathf.Deg2Rad * angleOffset;
                 Vector2 direction2 = new Vector2(Mathf.Cos(rad) * facing, Mathf.Sin(rad));
                 rb2.velocity = direction2.normalized * projectileSpeed;
