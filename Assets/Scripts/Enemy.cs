@@ -6,6 +6,8 @@ public class IntEvent : UnityEvent<int> { }
 
 public class Enemy : MonoBehaviour
 {
+    public GameObject healthBarPrefab;
+    public HealthBarUI healthBarInstance;
     public Rigidbody2D rb;
     public Character character;
     public int health;
@@ -21,6 +23,11 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         InitiateData();
+        
+        if (healthBarPrefab != null)
+        {
+            healthBarInstance.SetMaxHealth(health);
+        }
     }
 
     private void InitiateData()
@@ -35,10 +42,12 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-        // Debug.Log("taking damage! " + amount);
         health -= amount;
         animator.SetTrigger("Hurt");
         AudioManager.Instance.PlaySound(AudioManager.Instance.hurtSound);
+
+        healthBarInstance.SetHealth(health);
+
         if (health <= 0)
         {
             Die();
